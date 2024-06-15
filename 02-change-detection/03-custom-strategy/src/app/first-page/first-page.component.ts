@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck } from '@angular/core';
 
 @Component({
   selector: 'app-first-page',
@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
   styleUrls: ['./first-page.component.css'],
   changeDetection: ChangeDetectionStrategy.Default,
 })
-export class FirstPageComponent {
+export class FirstPageComponent implements DoCheck {
 
   counter = 0;
 
@@ -28,4 +28,12 @@ export class FirstPageComponent {
     this.changeDetectorRef.reattach();
   }
 
+  ngDoCheck(): void {
+    console.log('ngDoCheck');
+
+    if (this.counter % 10 === 0) {
+      this.changeDetectorRef.detectChanges();
+      this.changeDetectorRef.checkNoChanges();
+    }
+  }
 }
