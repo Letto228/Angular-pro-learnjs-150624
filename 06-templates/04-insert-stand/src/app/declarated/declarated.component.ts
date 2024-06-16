@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ProviderToken, inject } from '@angular/core';
 
 @Component({
   selector: 'app-declarated',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./declarated.component.css']
 })
 export class DeclaratedComponent {
-
+  name = inject('name' as any as ProviderToken<any>);
 }

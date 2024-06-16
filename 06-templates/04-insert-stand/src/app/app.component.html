@@ -6,9 +6,13 @@
   <button (click)="onClickClear()">Clear</button>
 </div>
 
-<div #viewContainer></div>
+<!-- <div #viewContainer></div> -->
+<!-- <ng-container #viewContainer></ng-container> -->
 
-<ng-template #declaratedTemplateRef>
-  <h3>Its template</h3>
-  <app-declarated></app-declarated>
+<ng-container *ngTemplateOutlet="declaratedTemplateRef; context: {$implicit: 'Egor'}"></ng-container>
+<ng-container *ngComponentOutlet="component$ | async"></ng-container>
+
+<ng-template #declaratedTemplateRef let-name let-surname="surname">
+  <h3>Its template: {{name}}: {{surname}}</h3>
+  <!-- <app-declarated [sdfds]="surname"></app-declarated> -->
 </ng-template>

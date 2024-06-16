@@ -29,4 +29,18 @@ export class DumbNgIfDirective<T> {
     private readonly viewContainerRef: ViewContainerRef,
     private readonly templateRef: TemplateRef<DumbNgIfContext<T>>
   ) {}
+
+  static ngTemplateContextGuard<T>(
+    _directive: DumbNgIfDirective<T>,
+    _context: unknown,
+  ): _context is DumbNgIfContext<T> {
+    return true;
+  }
+
+  static ngTemplateGuard_appDumbNgIf<T>(
+    _directive: DumbNgIfDirective<T>,
+    _inputValuew: T | null | undefined,
+  ): _inputValuew is T {
+    return true;
+  }
 }
